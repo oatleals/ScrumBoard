@@ -1,5 +1,5 @@
-const columns=5
-const rows=10
+const columns=10
+const rows=3
 const Width=1920
 const height=1080
 
@@ -16,3 +16,9 @@ for (var x=0; x<=columns; x++){
     
 context.stroke();
     
+    
+//Defining columns names    
+context.font = '32px sans-serif';
+context.fillText("To-Do", Width/rows-Width/(rows*2)-50, 30, 1000)
+context.fillText('In-Progress',(Width/rows+Width/(rows*2))-88, 30, 1000)
+context.fillText('Done',(Width/rows)*2+Width/(rows*2)-50, 30, 1000)

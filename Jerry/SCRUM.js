@@ -32,13 +32,13 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
     const toolsDiv = note.querySelector(".tools");
 
     const obj = {
-        "rgb(100, 149, 237)": "新建",
-        "rgb(127, 255, 170)": "UI开发中",
-        "rgb(148, 0, 211)": "API开发中",
-        "rgb(255, 69, 0)": "UI集成API",
-        "rgb(255, 192, 203)": "完成",
+        "rgb(100, 149, 237)": "Blue/新建",
+        "rgb(127, 255, 170)": "Mint/UI开发中",
+        "rgb(148, 0, 211)": "Purple/API开发中",
+        "rgb(255, 69, 0)": "Red/UI集成API",
+        "rgb(255, 192, 203)": "Pink/完成",
     }
-
+    
     let str = "";
     Object.entries(obj).map(([key, value]) => {
         if (color === key) {

@@ -46,9 +46,6 @@ function drawArrow(x1,y1,x2,y2){
        ctx.lineTo(xu, yu);
 	   ctx.strokeStyle = data.Color;
 	   ctx.stroke();
-
-       
-       
        
        }
        

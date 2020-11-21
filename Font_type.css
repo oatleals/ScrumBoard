@@ -2,3 +2,7 @@ body{
      font-family: "Verdana", sans serif;
 }
 
+/* if this is the only css that will be used the maybe
+     just add a style tag in the html so there are
+     less files to navigate through.
+*/ 

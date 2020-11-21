@@ -1,0 +1,72 @@
+* {
+	box-sizing: border-box;
+}
+
+
+@font-face
+{
+	font-family: exo;
+	src: url(LEMONMILK-Medium.otf);
+}
+
+body {
+	font-family: exo;
+	font-size: 1em;
+	line-height: 1;
+	background-color: rgba(255,255,255,1);
+	background: linear-gradient(135deg, rgba(201, 180, 224,1) 0%, rgba(208, 199, 217,1) 47%, rgba(225, 222, 227,1) 100%);
+
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0;
+	padding: 3em;
+
+}
+
+
+.add {
+	font-family: exo;
+	background-color: #a9abaa;
+	border-radius: 3px;
+	border: none;
+	color: white;
+	padding: 0.5rem 1rem;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+}
+
+
+.note {
+	background-color: #fff;
+	box-shadow: 0 0 10px 4px rgba(0,0,0,0.1);
+	margin: 20px;
+	height: 250px;
+	width: 400px;
+}
+
+.note .tools {
+	/* background-color: #a9abaa; */
+	display: flex;
+	justify-content: flex-end;
+	padding: 0.5rem
+}
+
+.note .main {
+	background-color: #eee;
+	overflow: hidden;
+	height: 400px;
+	width: 100%;
+}
+
+.note textarea{
+	outline: none;
+	font-size: 1.2rem;
+	border: none;
+	height: 250px;
+	width: 100%
+}
+
+.note .hidden {
+	display: none;
+}

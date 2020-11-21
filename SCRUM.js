@@ -1,4 +1,4 @@
-const addBtn = document.getElementById("add");
+dconst addBtn = document.getElementById("add");
 
 const notes = JSON.parse(localStorage.getItem("notes"));
 
@@ -18,14 +18,53 @@ function addNewNote(text = "") {
 
     note.innerHTML = `
         <div class="notes">
+            <div
+                id = "note"
+                class = "note
+                draggable = "true"
+                ondragstart = "onDragStart(event);"
+            >
+                draggable
+            </div>
+
             <div class="tools">
                 <button class="edit">EDIT</i></button>
                 <button class="delete">DELETE</i></button>
             </div>
             <div class="main ${text ? "" : "hidden"}"></div>
             <textarea class="${text ? "hidden" : ""}"></textarea>
+            
         </div>
     `;
+
+    note.onmousedown = function(event) {
+        let shiftX = event.clickX - note.getBoundingClientRect().left;
+        let shiftY = event.clientY - note.getBoundingClientRect().top;
+
+        note.style.position = 'absolute';
+        note.style.zIndex = 1000;
+        document.body.append(note);
+        
+        function moveAt(pageX, pageY) {
+            note.style.left = pageX - note.offsetWidth / 2 + 'px';
+            note.style.top = pageY - note.offsetHeight / 2 + 'px';
+        }
+
+        moveAt(event.pageX, event.pageY);
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        note.onmouseup = function() {
+            ball.onmouseup = null;    
+        };
+    };
+
+    note.ondragstart = function(){
+        return false;
+    };
 
     const editBtn = note.querySelector(".edit");
     const deleteBtn = note.querySelector(".delete");
@@ -69,3 +108,4 @@ function updateLS() {
 
     localStorage.setItem("notes", JSON.stringify(notes));
 }
+

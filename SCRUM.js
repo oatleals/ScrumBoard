@@ -24,7 +24,6 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
                 draggable = "true"
                 ondragstart = "onDragStart(event);"
             >
-                draggable
             </div>
 
             <div class="tools" style="background-color:`+ color + `">

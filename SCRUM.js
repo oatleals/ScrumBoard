@@ -18,6 +18,15 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
 
     note.innerHTML = `
         <div class="notes">
+            <div
+                id = "note"
+                class = "note
+                draggable = "true"
+                ondragstart = "onDragStart(event);"
+            >
+                draggable
+            </div>
+
             <div class="tools" style="background-color:`+ color + `">
                 <select class="status"></select>
                 <button class="edit">EDIT</i></button>
@@ -27,6 +36,35 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
             <textarea class="${text ? "hidden" : ""}"></textarea>
         </div>
     `;
+
+    note.onmousedown = function(event) {
+        let shiftX = event.clickX - note.getBoundingClientRect().left;
+        let shiftY = event.clientY - note.getBoundingClientRect().top;
+
+        note.style.position = 'absolute';
+        note.style.zIndex = 1000;
+        document.body.append(note);
+        
+        function moveAt(pageX, pageY) {
+            note.style.left = pageX - note.offsetWidth / 2 + 'px';
+            note.style.top = pageY - note.offsetHeight / 2 + 'px';
+        }
+
+        moveAt(event.pageX, event.pageY);
+
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+        note.onmouseup = function() {
+            ball.onmouseup = null;    
+        };
+    };
+
+    note.ondragstart = function(){
+        return false;
+    };
 
     const statusSelect = note.querySelector(".status");
     const toolsDiv = note.querySelector(".tools");

@@ -58,6 +58,7 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
 
         document.addEventListener('mousemove', onMouseMove);
         note.onmouseup = function() {
+            document.removeEventListener('mousemove', onMouseMove);
             ball.onmouseup = null;    
         };
     };

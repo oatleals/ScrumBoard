@@ -14,34 +14,35 @@ addBtn.addEventListener("click", () => {
 
 function addNewNote(color = "rgb(100, 149, 237)", text = "") {
     const note = document.createElement("div");
+
     note.classList.add("note");
 
     note.innerHTML = `
-        <div class="notes">
-            <div
-                id = "note"
-                class = "note
-                draggable = "true"
-                ondragstart = "onDragStart(event);"
-            >
-            </div>
 
-            <div class="tools" style="background-color:`+ color + `">
+<div class="notes">
+        <div class="tools" style="background-color:`+ color + `">
                 <select class="status"></select>
                 <button class="edit">EDIT</i></button>
                 <button class="delete">DELETE</i></button>
-            </div>
-            <div class="main ${text ? "" : "hidden"}"></div>
+                <button class="drag">DRAG</i></button>
+        </div>
+            
+        <div class="main ${text ? "" : "hidden"}"></div>
             <textarea class="${text ? "hidden" : ""}"></textarea>
         </div>
+        
+</div>
+
     `;
 
-    note.onmousedown = function(event) {
+    function onmousedown(event) {
+
         let shiftX = event.clickX - note.getBoundingClientRect().left;
         let shiftY = event.clientY - note.getBoundingClientRect().top;
 
         note.style.position = 'absolute';
-        note.style.zIndex = 1000;
+        note.style.zIndex = 10;
+
         document.body.append(note);
         
         function moveAt(pageX, pageY) {
@@ -58,13 +59,10 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
         document.addEventListener('mousemove', onMouseMove);
         note.onmouseup = function() {
             document.removeEventListener('mousemove', onMouseMove);
-            ball.onmouseup = null;    
+            note.onmouseup = null;    
         };
     };
 
-    note.ondragstart = function(){
-        return false;
-    };
 
     const statusSelect = note.querySelector(".status");
     const toolsDiv = note.querySelector(".tools");
@@ -89,6 +87,7 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
 
     const editBtn = note.querySelector(".edit");
     const deleteBtn = note.querySelector(".delete");
+    const dragBtn = note.querySelector(".drag");
 
     const main = note.querySelector(".main");
     const textArea = note.querySelector("textarea");
@@ -111,6 +110,10 @@ function addNewNote(color = "rgb(100, 149, 237)", text = "") {
         note.remove();
 
         updateLS();
+    });
+
+    dragBtn.addEventListener("click", (e) => {
+        onmousedown(e);
     });
 
     textArea.addEventListener("input", (e) => {
